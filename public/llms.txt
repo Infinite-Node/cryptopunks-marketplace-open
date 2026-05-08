@@ -1,0 +1,28 @@
+# cryptopunks open source
+
+> A minimal, non-custodial reference client for the CryptoPunks ecosystem. Look up any punk or address, render its onchain SVG straight from CryptopunksData, and place / withdraw / accept bids and offers from a connected wallet.
+
+This repo is a template — fork it, point it at your own RPC, and ship. Reads are proxied through `/api/rpc` so RPC keys stay server-side; writes are signed in the user's browser via RainbowKit + wagmi and broadcast directly to the canonical contracts. Not the official marketplace — for real trading use cryptopunks.app.
+
+Stack: Next.js 16 (App Router) · React 19 · wagmi 2.x · RainbowKit 2.x · viem 2.x · Tailwind 4 · Vitest.
+
+## Docs
+
+- [README](/README.md): What's in here, quick start, architecture, deploying
+- [AGENTS](/AGENTS.md): Onboarding for AI coding agents — Next.js 16 quirks, architecture invariants, visual conventions, pinned deps
+- [CONTRIBUTING](/CONTRIBUTING.md): Why outside contributions aren't accepted, plus version-pin reasoning
+- [SECURITY](/SECURITY.md): How to report a security issue
+- [/docs](/docs): In-app setup guide (RPC_URL, WalletConnect project ID)
+
+## Code
+
+- [app/lib/cryptopunks.ts](/app/lib/cryptopunks.ts): Contract addresses and ABIs (typed `as const`), plus `makeReadClient()`
+- [app/lib/wallet.tsx](/app/lib/wallet.tsx): RainbowKit + wagmi provider and `useWallet()` hook
+- [app/api/rpc/route.ts](/app/api/rpc/route.ts): Server-side JSON-RPC proxy that keeps `RPC_URL` private
+- [app/components/PunkView.tsx](/app/components/PunkView.tsx): Per-punk page (state, onchain SVG, bids/sales)
+- [app/components/AddressView.tsx](/app/components/AddressView.tsx): Per-address holdings, pending balance, stash address
+- [app/components/AttributeView.tsx](/app/components/AttributeView.tsx): Per-attribute search and SVG grid
+
+## Optional
+
+- [LICENSE](/LICENSE): MIT
